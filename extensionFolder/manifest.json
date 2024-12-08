@@ -11,9 +11,6 @@
             "js": ["content.js"]
         }
     ],
-    "background": {
-        "scripts": ["background.js"]
-    },
     "icons": {
         "48": "icon.png"
     },
