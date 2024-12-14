@@ -92,10 +92,11 @@ input {
 }
 
 select {
+    font-size: 15px;
     float: right;
     border: 2px solid white;
     color: white;
-    padding: 2px;
+    padding: 1px;
     background-color: #222;
     margin-top: -2px;
 }
