@@ -12,11 +12,19 @@
 		<h1>Accessibility</h1>
 		<div class="input-container">
 			<label for="size">Fontsize</label>
-			<input type="number" name="size" id="size" value="16" style="width: 8ch;" min="8" max="128">
+			<input type="number" name="size" id="size" value="16" style="width: 12ch;" min="8" max="128">
 		</div>
         <div class="general-container">
 			<label for="highcontrast">High contrast</label>
 			<input type="checkbox" name="styleManipulation" id="highcontrast" class="check">
+			<div class="general-container">
+				<label for="highContrastTheme">Theme</label>
+				<select name="highContrastTheme" id="highContrastTheme">
+					<option value="theme1">theme1</option>
+					<option value="theme2">theme2</option>
+					<option value="theme3">theme3</option>
+				</select>
+			</div>
 		</div>
         <div class="general-container">
 			<label for="monochromacy">Monochromacy</label>
@@ -27,28 +35,29 @@
 			<button type="submit" id="submit">State changes</button>
 		</div>
 	</body>
-	<script> // To jest skrypt dla zmiany koloru klieknientego kursorem elementu
+	<script> // To jest skrypt dla zmiany koloru klieknientego kursorem element
 		const sizeInput = document.getElementById('size');
 		const sizeLabel = document.querySelector('label[for="size"]');
+
+		const highcontrastInput = document.getElementById('highcontrast');
+		const highcontrastLabel = document.querySelector('label[for="highcontrast"]');
+
+		const monochromacyInput = document.getElementById('monochromacy');
+		const monochromacyLabel = document.querySelector('label[for="monochromacy"]');
+
+		const highContrastThemeSelect = document.getElementById('highContrastTheme')
+		const highContrastThemeLabel = document.querySelector('label[for="highContrastTheme"]')
 
 		sizeInput.addEventListener('focus', () => {
 		sizeLabel.classList.add('focused-label');
 		});
-
 		sizeInput.addEventListener('blur', () => {
 		sizeLabel.classList.remove('focused-label');
 		});
-		
-
-		const highcontrastInput = document.getElementById('highcontrast');
-		const highcontrastLabel = document.querySelector('label[for="highcontrast"]');
-		const monochromacyInput = document.getElementById('monochromacy');
-		const monochromacyLabel = document.querySelector('label[for="monochromacy"]');
 
 		highcontrastInput.addEventListener('focus', () => {
 		highcontrastLabel.classList.add('focused-label');
 		});
-
 		highcontrastInput.addEventListener('blur', () => {
 		highcontrastLabel.classList.remove('focused-label');
 		});
@@ -56,9 +65,16 @@
 		monochromacyInput.addEventListener('focus', () => {
 		monochromacyLabel.classList.add('focused-label');
 		});
-
 		monochromacyInput.addEventListener('blur', () => {
 		monochromacyLabel.classList.remove('focused-label');
 		});
+
+		highContrastThemeSelect.addEventListener('focus', () => {
+			highContrastThemeLabel.classList.add('focused-label')
+			console.log('FUCK')
+		})
+		highContrastThemeSelect.addEventListener('blur', () => {
+			highContrastThemeLabel.classList.remove('focused-label')
+		})
 	</script>
 </html>

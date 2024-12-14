@@ -1,9 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
+}
+
 body {
     margin: 10px;
 }
 
 #sizeInp {
     width: 50px;
+}
+
+h1 {
+    margin-bottom: 30px;
 }
 
 button {
@@ -36,7 +47,7 @@ button {
     cursor: pointer;
 }
 body {
-    font-family: 'Source Code Pro', monospace;
+
     background-color: #222;
     color: white;
     padding: 20px;
@@ -54,6 +65,11 @@ label {
     margin: 0 0 10px;
     width: 325px;
 }
+.general-container > .general-container {
+    margin: 10px 0 0;
+    padding: 0 20px;
+    width: 100%;
+}
 
 .input-container > label {
     border: none;
@@ -66,7 +82,6 @@ label {
 }
 input {
     font-family: inherit;
-    
     background-color: #222;
     border: 2px solid white;
     border-left: 4px solid white;
@@ -74,6 +89,15 @@ input {
     padding: 4px 5px;
     font-size: 16px;
     
+}
+
+select {
+    float: right;
+    border: 2px solid white;
+    color: white;
+    padding: 2px;
+    background-color: #222;
+    margin-top: -2px;
 }
 
 button {
@@ -118,7 +142,7 @@ button {
 button:hover {
     background-color: yellow;
 }
-input:focus {
+input:focus, select:focus {
     color: yellow;
     outline: none;
     border-color: yellow;
