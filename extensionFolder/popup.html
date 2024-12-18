@@ -5,6 +5,7 @@
 		<title>Support</title> 
 		<script src="p5.js"></script>   
 		<script type="text/javascript" src="popup.js"></script>
+		<script type="text/javascript" src="style.js"></script>
 		<link rel="stylesheet" href="style.css">
 
 	</head>
@@ -22,42 +23,13 @@
 			<label for="monochromacy">Monochromacy</label>
         	<input type="checkbox" name="styleManipulation" id="monochromacy" class="check">
 		</div>
+		<div class="general-container">
+			<label for="assistant">Read Assistant</label>
+        	<input type="checkbox" name="styleManipulation" id="assistant" class="check">
+		</div>
 		<br>
 		<div class="general-container">
 			<button type="submit" id="submit">State changes</button>
 		</div>
 	</body>
-	<script> // To jest skrypt dla zmiany koloru klieknientego kursorem elementu
-		const sizeInput = document.getElementById('size');
-		const sizeLabel = document.querySelector('label[for="size"]');
-
-		sizeInput.addEventListener('focus', () => {
-		sizeLabel.classList.add('focused-label');
-		});
-
-		sizeInput.addEventListener('blur', () => {
-		sizeLabel.classList.remove('focused-label');
-		});
-		
-
-		const highcontrastInput = document.getElementById('highcontrast');
-		const highcontrastLabel = document.querySelector('label[for="highcontrast"]');
-		const monochromacyInput = document.getElementById('monochromacy');
-		const monochromacyLabel = document.querySelector('label[for="monochromacy"]');
-
-		highcontrastInput.addEventListener('focus', () => {
-		highcontrastLabel.classList.add('focused-label');
-		});
-
-		highcontrastInput.addEventListener('blur', () => {
-		highcontrastLabel.classList.remove('focused-label');
-		});
-
-		monochromacyInput.addEventListener('focus', () => {
-		monochromacyLabel.classList.add('focused-label');
-		});
-
-		monochromacyInput.addEventListener('blur', () => {
-		monochromacyLabel.classList.remove('focused-label');
-		});
-	</script>
+</html>

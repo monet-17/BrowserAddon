@@ -8,8 +8,8 @@ let insertedRules = [];
 
 function gotMessage(message, sender, sendResponse) {
 	console.log(message);
-	let paragraphs = document.getElementsByTagName('p');
-	for (elt of paragraphs) {
+	let allElements = document.getElementsByTagName('*');
+	for (elt of allElements) {
 		console.log(message.fsize);
 		if (message.fsize === '') {
 			message.fsize = '16';
@@ -18,6 +18,10 @@ function gotMessage(message, sender, sendResponse) {
 
 		let lineHeight = lineheightRatio(parseInt(message.fsize));
 		elt.style['line-height'] = `${lineHeight}`;
+	}
+
+	if (message.assist) {
+		readAssistant(highlight());
 	}
 	
 	if (message.hcontrast) {
@@ -77,4 +81,29 @@ function gotMessage(message, sender, sendResponse) {
         insertedRules.push(pageStyles.insertRule('.navbar a { color: #808080; }', pageStyles.cssRules.length));
         insertedRules.push(pageStyles.insertRule('.navbar a:hover { color: #505050; }', pageStyles.cssRules.length));
     }
+
+	function readAssistant(text) {
+		window.speechSynthesis.cancel();
+		if ('speechSynthesis' in window) {
+			console.log("Speech synthesis is supported.");
+		} else {
+			console.log("Speech synthesis is not supported.");
+		}
+		console.log("Text to be read: ", text);
+		const actor = new SpeechSynthesisUtterance(text);
+		actor.lang = 'en-US';
+		actor.rate = 1;
+		actor.pitch = 1;
+		actor.volume = 1;
+		window.speechSynthesis.speak(actor);
+
+	}
+
+	function highlight() {
+		const selection = window.getSelection();
+		if (selection.rangeCount > 0) {
+			return selection.toString();
+		}
+		return '';
+	}
 }

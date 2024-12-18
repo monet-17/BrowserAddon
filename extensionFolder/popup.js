@@ -2,28 +2,13 @@ function setup() {
 	noCanvas();
 	console.log("popup running");
 
-	const check1 = document.getElementById('highcontrast');
-    const check2 = document.getElementById('monochromacy');
-
-	check1.addEventListener('change', function() { check(this); });
-	check2.addEventListener('change', function() { check(this); });
-
-    function check(x) {
-        if (x.checked) {
-            if (x.id === check1.id) {
-                check2.checked = false;
-            } else {
-                check1.checked = false;
-            }
-        }
-    }
-
 	let submitBtn = document.getElementById("submit");
 	submitBtn.onclick = () => {
 
-		let size = select('#size');
+		let sizes = select('#size');
 		let highcontrast = select('#highcontrast');
 		let monochromacy = select('#monochromacy');
+		let assistant = select('#assistant');
 
 		let params = {
 			active: true,
@@ -34,9 +19,10 @@ function setup() {
 
 		function gotTabs(tabs) {
 			let message = {
-				fsize: size.value(),
+				fsize: sizes.value(),
 				hcontrast: highcontrast.checked(),
-				monochrome: monochromacy.checked()
+				monochrome: monochromacy.checked(),
+				assist: assistant.checked()
 			}
 			
 
