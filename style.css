@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
+}
+
+body {
+    margin: 1rem;
+}
+
+#sizeInp {
+    width: 5rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+#close-popup {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+body {
+    width: min-content;
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+}
+a {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: cyan;
+}
+a:visited {
+    color: rgb(168, 144, 255);
+}
+a:hover {
+    color: violet;
+}
+a:visited:hover {
+    color: rgb(255, 104, 255);
+}
+footer a {
+    float: right;
+}
+label {
+    padding-left: 0.5rem;
+    border-left: 0.1rem solid;
+    font-size: 1.2rem;
+}
+.input-container {
+    margin: 0.5rem 0 0.9rem;
+}
+
+.general-container {
+    margin: 0 0 1rem;
+    width: 20rem;
+}
+.general-container > .general-container {
+    margin: 1rem 0 0;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.input-container > label {
+    border: none;
+    position: absolute;
+    background-color: #222;
+    padding: 0 0.2rem;
+    transform: translate(0.9rem, -1.1rem);
+    font-size: 1.2rem;
+
+}
+input {
+    font-family: inherit;
+    background-color: #222;
+    border: 0.1rem solid white;
+    border-left: 0.2rem solid white;
+    color: white;
+    padding: 0.4rem 0.3rem;
+    font-size: 1rem;
+    
+}
+
+select {
+    font-size: 1rem;
+    float: right;
+    border: 0.1rem solid white;
+    color: white;
+    padding: 0.08rem;
+    background-color: #222;
+    margin-top: -0.2rem;
+}
+
+button {
+    padding:0.4rem 0.7rem;
+    font-size:1.15rem;
+    cursor: pointer;
+    background-color: #fff;
+    color: black;
+    border: none;
+}
+.check {
+    width: 2ch;
+    border-radius: 0;
+
+}
+.check, .round {
+    display: grid; float: right;
+    place-content: center;
+    height: 1.15rem;
+    width: 1.15rem;
+    border: white solid 0.1rem;
+    background-color: none;
+    appearance: none;
+    font: inherit;
+    color: currentColor;
+    cursor: pointer;
+}
+.check::before {
+    transform: scale(0);
+    content: "";
+    width: 0.65rem;
+    height: 0.65rem;
+}
+.check:checked::before {
+    transform: scale(1);
+    background-color: white;
+}
+.check:checked:focus::before {
+    transform: scale(1);
+    background-color: yellow;
+}
+button:hover {
+    background-color: yellow;
+}
+input:focus, select:focus {
+    color: yellow;
+    outline: none;
+    border-color: yellow;
+}
+.focused-label {
+    color: yellow;
+    border-color: yellow;
+}
