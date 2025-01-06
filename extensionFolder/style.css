@@ -43,20 +43,20 @@ button {
     background-color: #ff0000;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
 body {
     width: min-content;
     background-color: #222;
     color: white;
-    padding: 20px;
+    padding: 1rem;
 }
 a {
     font-weight: bold;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.1rem;
     color: cyan;
 }
 a:visited {
@@ -72,21 +72,21 @@ footer a {
     float: right;
 }
 label {
-    padding-left: 5px;
-    border-left: 2px solid;
-    font-size: 18px;
+    padding-left: 0.5rem;
+    border-left: 0.1rem solid;
+    font-size: 1.2rem;
 }
 .input-container {
-    margin: 5px 0 9px;
+    margin: 0.5rem 0 0.9rem;
 }
 
 .general-container {
-    margin: 0 0 10px;
-    width: 325px;
+    margin: 0 0 1rem;
+    width: 20rem;
 }
 .general-container > .general-container {
-    margin: 10px 0 0;
-    padding: 0 20px;
+    margin: 1rem 0 0;
+    padding: 0 1rem;
     width: 100%;
 }
 
@@ -94,35 +94,35 @@ label {
     border: none;
     position: absolute;
     background-color: #222;
-    padding: 0 2px;
-    transform: translate(9px, -11px);
-    font-size: 14px;
+    padding: 0 0.2rem;
+    transform: translate(0.9rem, -1.1rem);
+    font-size: 1.2rem;
 
 }
 input {
     font-family: inherit;
     background-color: #222;
-    border: 2px solid white;
-    border-left: 4px solid white;
+    border: 0.1rem solid white;
+    border-left: 0.2rem solid white;
     color: white;
-    padding: 4px 5px;
-    font-size: 16px;
+    padding: 0.4rem 0.3rem;
+    font-size: 1rem;
     
 }
 
 select {
-    font-size: 15px;
+    font-size: 1rem;
     float: right;
-    border: 2px solid white;
+    border: 0.1rem solid white;
     color: white;
-    padding: 1px;
+    padding: 0.08rem;
     background-color: #222;
-    margin-top: -2px;
+    margin-top: -0.2rem;
 }
 
 button {
-    padding: 8px 15px;
-    font-size: 18px;
+    padding:0.4rem 0.7rem;
+    font-size:1.15rem;
     cursor: pointer;
     background-color: #fff;
     color: black;
@@ -136,9 +136,9 @@ button {
 .check, .round {
     display: grid; float: right;
     place-content: center;
-    height: 18px;
-    width: 18px;
-    border: white solid 2px;
+    height: 1.15rem;
+    width: 1.15rem;
+    border: white solid 0.1rem;
     background-color: none;
     appearance: none;
     font: inherit;
@@ -148,8 +148,8 @@ button {
 .check::before {
     transform: scale(0);
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 0.65rem;
+    height: 0.65rem;
 }
 .check:checked::before {
     transform: scale(1);
