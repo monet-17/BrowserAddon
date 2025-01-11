@@ -13,18 +13,30 @@
 		<div class="input-container">
 			<label for="size">Fontsize</label>
 			<input type="number" name="size" id="size" value="" style="width: 12ch;" min="8" max="128">
-			<br><i>To change default value, change fontsize in your browser settings</i>
+			<i>To change default value, change fontsize in your browser settings</i>
 		</div>
         <div class="general-container">
 			<label for="highcontrast">High contrast</label>
 			<input type="checkbox" name="styleManipulation" id="highcontrast" class="check">
-			<div class="general-container">
+			<div class="general-container" id="highcontrast-details">
 				<label for="highContrastTheme">Theme</label>
 				<select name="highContrastTheme" id="highContrastTheme">
-					<option value="theme1">theme1</option>
-					<option value="theme2">theme2</option>
-					<option value="theme3">theme3</option>
+					<option value="theme1">default</option>
+					<!-- <option value="theme2">theme2</option>
+					<option value="theme3">theme3</option> -->
+					<option value="custom">custom</option>
 				</select>
+				<div class="general-container" id="custom-theme">
+					<label for="color-bg">background</label><input type="color" name="color-bg" id="color-bg" class="color" value="#222222"><br>
+					<label for="color-text">text</label><input type="color" name="color-text" id="color-text" class="color" value="#ffffff"><br>
+					<label for="color-text-selected">selected text</label><input type="color" name="color-text-selected" id="color-text-selected" class="color" value="#ffff00"><br>
+					<label for="color-header">header</label><input type="color" name="color-header" id="color-header" class="color" value="#c966ff"><br>
+					<label for="color-link">link</label><input type="color" name="color" id="color-link" class="color" value="#00ffff"><br>
+					<label for="color-link-visited">visited link </label><input type="color" name="color-link-visited" id="color-link-visited" class="color" value="#0000ff"><br>
+					<label for="color-paragraph">paragraph</label><input type="color" name="color-paragraph" id="color-paragraph" class="color" value="#00ff00"><br>
+					<label for="color-button">button</label><input type="color" name="color-button" id="color-button" class="color" value="#ff0000"><br>
+					<label for="color-input">input</label><input type="color" name="color-input" id="color-input" class="color" value="#ff00ff"><br>
+				</div>
 			</div>
 		</div>
         <div class="general-container">
@@ -33,7 +45,7 @@
 		</div>
 		<br>
 		<div class="general-container">
-			<button type="submit" id="submit">State changes</button>
+			<button id="submit">State changes</button>
 		</div>
 		<footer>
 			<a href="https://github.com/monet-17/BrowserAddon" target="_blank">Source code</a>
@@ -41,6 +53,7 @@
 		</footer>
 	</body>
 	<script>
+		console.log('popup online >;)')
 		var body = document.body;
         var computedStyle = window.getComputedStyle(body);
         var fontSize = computedStyle.fontSize;
@@ -48,19 +61,10 @@
 		fontSize = fontSize.replace("px", "")
 		fontSize = parseInt(fontSize)
 		console.log(fontSize)
+
 		const sizeInput = document.getElementById('size');
 		sizeInput.value = fontSize
 		const sizeLabel = document.querySelector('label[for="size"]');
-
-		const highcontrastInput = document.getElementById('highcontrast');
-		const highcontrastLabel = document.querySelector('label[for="highcontrast"]');
-
-		const monochromacyInput = document.getElementById('monochromacy');
-		const monochromacyLabel = document.querySelector('label[for="monochromacy"]');
-
-		const highContrastThemeSelect = document.getElementById('highContrastTheme')
-		const highContrastThemeLabel = document.querySelector('label[for="highContrastTheme"]')
-
 		sizeInput.addEventListener('focus', () => {
 		sizeLabel.classList.add('focused-label');
 		});
@@ -68,25 +72,146 @@
 		sizeLabel.classList.remove('focused-label');
 		});
 
+		const highcontrastInput = document.getElementById('highcontrast');
+		const highcontrastLabel = document.querySelector('label[for="highcontrast"]');
+		const highContrastDetails = document.getElementById('highcontrast-details');
+
+		highcontrastInput.addEventListener('change', () => {
+			if (highcontrastInput.checked) {
+				highContrastDetails.classList.add('visible');
+			} else {
+				highContrastDetails.classList.remove('visible');
+			}
+		});
+
 		highcontrastInput.addEventListener('focus', () => {
-		highcontrastLabel.classList.add('focused-label');
+			highcontrastLabel.classList.add('focused-label');
 		});
+
 		highcontrastInput.addEventListener('blur', () => {
-		highcontrastLabel.classList.remove('focused-label');
+			highcontrastLabel.classList.remove('focused-label');
 		});
+
+		const monochromacyInput = document.getElementById('monochromacy');
+		const monochromacyLabel = document.querySelector('label[for="monochromacy"]');
 
 		monochromacyInput.addEventListener('focus', () => {
-		monochromacyLabel.classList.add('focused-label');
-		});
-		monochromacyInput.addEventListener('blur', () => {
-		monochromacyLabel.classList.remove('focused-label');
+			monochromacyLabel.classList.add('focused-label');
 		});
 
+		monochromacyInput.addEventListener('blur', () => {
+			monochromacyLabel.classList.remove('focused-label');
+		});
+
+		monochromacyInput.addEventListener('change', () => {
+			if (monochromacyInput.checked) {
+				highContrastDetails.classList.remove('visible');
+			}
+		});
+
+		const highContrastThemeSelect = document.getElementById('highContrastTheme');
+		const highContrastThemeLabel = document.querySelector('label[for="highContrastTheme"]');
+		const highContrastThemeCustomDiv = document.getElementById('custom-theme');
+
 		highContrastThemeSelect.addEventListener('focus', () => {
-			highContrastThemeLabel.classList.add('focused-label')
-		})
+			highContrastThemeLabel.classList.add('focused-label');
+		});
+
 		highContrastThemeSelect.addEventListener('blur', () => {
-			highContrastThemeLabel.classList.remove('focused-label')
+			highContrastThemeLabel.classList.remove('focused-label');
+		});
+
+		highContrastThemeSelect.addEventListener('change', () => {
+			if (highContrastThemeSelect.value === 'custom') {
+				console.log("Custom theme selected");
+				highContrastThemeCustomDiv.classList.add('visible');
+			} else {
+				highContrastThemeCustomDiv.classList.remove('visible');
+			}
+		});
+
+
+		const customThemeBackgroundInput = document.getElementById('color-bg')
+		const customThemeBackgroundLabel = document.querySelector('label[for="color-bg"]')
+		customThemeBackgroundInput.addEventListener('focus', () => {
+			customThemeBackgroundLabel.classList.add('focused-label')
 		})
+		customThemeBackgroundInput.addEventListener('blur', () => {
+			customThemeBackgroundLabel.classList.remove('focused-label')
+		})
+
+		const customThemeTextInput = document.getElementById('color-text')
+		const customThemeTextLabel = document.querySelector('label[for="color-text"]')
+		customThemeTextInput.addEventListener('focus', () => {
+			customThemeTextLabel.classList.add('focused-label')
+		})
+		customThemeTextInput.addEventListener('blur', () => {
+			customThemeTextLabel.classList.remove('focused-label')
+		})
+
+		const customThemeTextSelectedInput = document.getElementById("color-text-selected")
+		const customThemeTextSelectedLabel = document.querySelector('label[for="color-text-selected"]')
+		customThemeTextSelectedInput.addEventListener('focus', () => {
+			customThemeTextSelectedLabel.classList.add('focused-label')
+		})
+		customThemeTextSelectedInput.addEventListener('blur', () => {
+			customThemeTextSelectedLabel.classList.remove('focused-label')
+		})
+
+		const customThemeHeaderInput = document.getElementById("color-header")
+		const customThemeHeaderLabel = document.querySelector('label[for="color-header"]')
+		customThemeHeaderInput.addEventListener('focus', () => {
+			customThemeHeaderLabel.classList.add('focused-label')
+		})
+		customThemeHeaderInput.addEventListener('blur', () => {
+			customThemeHeaderLabel.classList.remove('focused-label')
+		})
+
+		const customThemeLinkInput = document.getElementById("color-link")
+		const customThemeLinkLabel = document.querySelector('label[for="color-link"]')
+		customThemeLinkInput.addEventListener('focus', () => {
+			customThemeLinkLabel.classList.add('focused-label')
+		})
+		customThemeLinkInput.addEventListener('blur', () => {
+			customThemeLinkLabel.classList.remove('focused-label')
+		})
+
+		const customThemeLinkVisitedInput = document.getElementById("color-link-visited")
+		const customThemeLinkVisitedLabel = document.querySelector('label[for="color-link-visited"]')
+		customThemeLinkVisitedInput.addEventListener('focus', () => {
+			customThemeLinkVisitedLabel.classList.add('focused-label')
+		})
+		customThemeLinkVisitedInput.addEventListener('blur', () => {
+			customThemeLinkVisitedLabel.classList.remove('focused-label')
+		})
+
+		const customThemeParagraphInput = document.getElementById("color-paragraph")
+		const customThemeParagraphLabel = document.querySelector('label[for="color-paragraph"]')
+		customThemeParagraphInput.addEventListener('focus', () => {
+			customThemeParagraphLabel.classList.add('focused-label')
+		})
+		customThemeParagraphInput.addEventListener('blur', () => {
+			customThemeParagraphLabel.classList.remove('focused-label')
+		})
+
+		const customThemeButtonInput = document.getElementById("color-button")
+		const customThemeButtonLabel = document.querySelector('label[for="color-button"]')
+		customThemeButtonInput.addEventListener('focus', () => {
+			customThemeButtonLabel.classList.add('focused-label')
+		})
+		customThemeButtonInput.addEventListener('blur', () => {
+			customThemeButtonLabel.classList.remove('focused-label')
+		})
+
+		const customThemeInputInput = document.getElementById("color-input")
+		const customThemeInputLabel = document.querySelector('label[for="color-input"]')
+		customThemeInputInput.addEventListener('focus', () => {
+			customThemeInputLabel.classList.add('focused-label')
+		})
+		customThemeInputInput.addEventListener('blur', () => {
+			customThemeInputLabel.classList.remove('focused-label')
+		})
+
+		
 	</script>
 </html>

@@ -3,26 +3,18 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Source Code Pro', monospace;
+    user-select: none;
 }
-
-body {
-    margin: 10px;
-}
-
-#sizeInp {
-    width: 50px;
-}
-
 h1 {
     margin-bottom: 30px;
     text-align: center;
+    border-bottom: double 0.2rem;
 }
-
 button {
     width: 100%;
+    border: 0.35rem double black !important;
 }
-
-.popup {
+/* .popup {
     display: none;
     position: fixed;
     top: 50%;
@@ -33,7 +25,7 @@ button {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 9999;
-}
+} */
 
 .popup-content {
     text-align: center;
@@ -52,6 +44,7 @@ body {
     background-color: #222;
     color: white;
     padding: 1rem;
+    border: 0.2rem double white;
 }
 a {
     font-weight: bold;
@@ -73,7 +66,7 @@ footer a {
 }
 label {
     padding-left: 0.5rem;
-    border-left: 0.1rem solid;
+    border-left: 0.2rem double;
     font-size: 1.2rem;
 }
 .input-container {
@@ -89,7 +82,6 @@ label {
     padding: 0 1rem;
     width: 100%;
 }
-
 .input-container > label {
     border: none;
     position: absolute;
@@ -102,18 +94,18 @@ label {
 input {
     font-family: inherit;
     background-color: #222;
-    border: 0.1rem solid white;
-    border-left: 0.2rem solid white;
+    border: 0.2rem double white;
     color: white;
-    padding: 0.4rem 0.3rem;
+    padding: 0.2rem 0.15rem;
     font-size: 1rem;
     
 }
 
 select {
+    cursor: pointer;
     font-size: 1rem;
     float: right;
-    border: 0.1rem solid white;
+    border: 0.2rem double white;
     color: white;
     padding: 0.08rem;
     background-color: #222;
@@ -133,12 +125,12 @@ button {
     border-radius: 0;
 
 }
-.check, .round {
+.check {
     display: grid; float: right;
     place-content: center;
     height: 1.15rem;
     width: 1.15rem;
-    border: white solid 0.1rem;
+    border: white double 0.2rem;
     background-color: none;
     appearance: none;
     font: inherit;
@@ -150,15 +142,34 @@ button {
     content: "";
     width: 0.65rem;
     height: 0.65rem;
+    background-color: white;
 }
 .check:checked::before {
     transform: scale(1);
     background-color: white;
 }
+.check:focus::before {
+    background-color: yellow; /* Focus state background color */
+}
 .check:checked:focus::before {
     transform: scale(1);
     background-color: yellow;
 }
+.color {
+    width: 2.4rem;
+    height: 1.2rem;
+    padding: 0.2rem;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding: 0;
+    border: double 0.19rem white;
+    float: right;
+}
+::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
 button:hover {
     background-color: yellow;
 }
@@ -170,4 +181,10 @@ input:focus, select:focus {
 .focused-label {
     color: yellow;
     border-color: yellow;
+}
+#highcontrast-details, #custom-theme {
+    display: none;
+}
+.visible {
+    display:block !important;
 }
