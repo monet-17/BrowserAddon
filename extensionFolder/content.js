@@ -22,6 +22,8 @@ function gotMessage(message, sender, sendResponse) {
 
 	if (message.assist) {
 		readAssistant(highlight());
+	} else {
+		window.speechSynthesis.cancel();
 	}
 	
 	if (message.hcontrast) {
@@ -84,20 +86,26 @@ function gotMessage(message, sender, sendResponse) {
 
 	function readAssistant(text) {
 		window.speechSynthesis.cancel();
-		if ('speechSynthesis' in window) {
-			console.log("Speech synthesis is supported.");
-		} else {
-			console.log("Speech synthesis is not supported.");
-		}
-		console.log("Text to be read: ", text);
-		const actor = new SpeechSynthesisUtterance(text);
-		actor.lang = 'en-US';
+
+	if ('speechSynthesis' in window) {
+		console.log("Speech synthesis is supported.");
+	} else {
+		console.log("Speech synthesis is not supported.");
+		return;
+	}
+
+	const parts = splitText(text, 200);
+
+	for (const part of parts) {
+		const actor = new SpeechSynthesisUtterance(part);
+		actor.lang = document.documentElement.lang || 'en-US';
 		actor.rate = 1;
 		actor.pitch = 1;
 		actor.volume = 1;
-		window.speechSynthesis.speak(actor);
 
+		window.speechSynthesis.speak(actor);
 	}
+}
 
 	function highlight() {
 		const selection = window.getSelection();
@@ -105,5 +113,25 @@ function gotMessage(message, sender, sendResponse) {
 			return selection.toString();
 		}
 		return '';
+	}
+	function splitText(text, maxLength) {
+		const sentences = text.match(/[^.!?]+[.!?]+|\s*[^.!?]+$/g);
+		const parts = [];
+		let currentPart = '';
+
+		for (const sentence of sentences) {
+			if ((currentPart + sentence).length > maxLength) {
+				parts.push(currentPart);
+				currentPart = sentence;
+			} else {
+				currentPart += sentence;
+			}
+		}
+
+		if (currentPart) {
+			parts.push(currentPart);
+		}
+
+		return parts;
 	}
 }
